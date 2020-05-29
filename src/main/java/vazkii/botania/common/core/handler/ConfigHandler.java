@@ -108,6 +108,7 @@ public final class ConfigHandler {
 		public final ForgeConfigSpec.BooleanValue chargingAnimationEnabled;
 		public final ForgeConfigSpec.BooleanValue silentSpreaders;
 		public final ForgeConfigSpec.IntValue spreaderTraceTime;
+		public final ForgeConfigSpec.DoubleValue bellethorneDmgMult;
 		public final ForgeConfigSpec.BooleanValue flowerForceCheck;
 		public final ForgeConfigSpec.BooleanValue enderPickpocketEnabled;
 
@@ -147,6 +148,9 @@ public final class ConfigHandler {
 			spreaderTraceTime = builder
 					.comment("How many ticks into the future will mana spreaders attempt to predict where mana bursts go? Setting this lower will improve spreader performance, but will cause them to not fire at targets that are too far away.")
 					.defineInRange("spreader.traceTime", 400, 1, Integer.MAX_VALUE);
+			bellethorneDmgMult = builder
+					.comment("Multiply damage dealt by Bellethorne to mobs by this multiplier. By default deals 6")
+					.defineInRange("flower.bellethorneDmgMult", 1.00, 1, Double.MAX_VALUE);
 			flowerForceCheck = builder
 					.comment("Turn this off ONLY IF you're on an extremely large world with an exaggerated count of Mana Spreaders/Mana Pools and are experiencing TPS lag. This toggles whether flowers are strict with their checking for connecting to pools/spreaders or just check whenever possible.")
 					.define("flower.forceCheck", true);

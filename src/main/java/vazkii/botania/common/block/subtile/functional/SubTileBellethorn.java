@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.TileEntityFunctionalFlower;
+import vazkii.botania.common.core.handler.ConfigHandler;
 import vazkii.botania.common.lib.LibMisc;
 
 import java.util.List;
@@ -61,6 +62,7 @@ public class SubTileBellethorn extends TileEntityFunctionalFlower {
 		}
 
 		final int manaToUse = getManaCost();
+		final double dmgMultiplier = ConfigHandler.COMMON.bellethorneDmgMult.get();
 
 		if (ticksExisted % 5 == 0) {
 			int range = getRange();
@@ -68,9 +70,9 @@ public class SubTileBellethorn extends TileEntityFunctionalFlower {
 
 			for (LivingEntity entity : entities) {
 				if (entity.hurtTime == 0 && getMana() >= manaToUse) {
-					int dmg = 4;
+					int dmg = (int) (4 * dmgMultiplier);
 					if (entity instanceof WitchEntity) {
-						dmg = 20;
+						dmg = (int) (20 * dmgMultiplier);
 					}
 
 					entity.attackEntityFrom(DamageSource.MAGIC, dmg);
